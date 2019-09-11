@@ -20,7 +20,7 @@ public class Guess
             } else {
                 int guess = sc.nextInt();
                 res = guess;
-                if (testGuess(guess, answer)) {
+                if (isValidGuessFormat(guess, answer)) {
                     count++;
                 }
             }
@@ -30,7 +30,7 @@ public class Guess
         System.out.println("Total guesses: " + count);
     }
     
-    private static boolean testGuess(int n, int answer) {
+    private static boolean isValidGuessFormat(int n, int answer) {
         if (n == answer) {
             return true;
         } else if (n > 1000 || n < 1) {
