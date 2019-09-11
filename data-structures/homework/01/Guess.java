@@ -15,41 +15,35 @@ public class Guess
         // Malformated guesses (eg letters or numbers outside guess range)
         // will not incrememt count. 
         while (res != answer) {
-            boolean isValid = sc.hasNextInt();
-            if (!isValid) {
+            if (!sc.hasNextInt()) {
                 System.out.println("input was of bad format");
             } else {
                 int guess = sc.nextInt();
-                res = testGuess(guess, answer);
-                count++;
+                res = guess;
+                if (testGuess(guess, answer)) {
+                    count++;
+                }
             }
             sc.nextLine();
         }
+        sc.close();
         System.out.println("Total guesses: " + count);
     }
     
-    // First check if input can be interpreted as an int.
-    // Then check if int is outside range. Return -1 if failure.
-    private static int getUserInput(Scanner sc){
-        System.out.println("input a number between 1 and 1000: ");
-        if (!sc.hasNextInt()) {
-            sc.reset();
-            return -1;
-        }
-        int guess = sc.nextInt();
-        if (guess < 1 || guess > 1000) {
-            return -1;
-        }
-        return guess;
-    }
-
-    private static int testGuess(int n, int answer) {
-        if (n > answer) {
+    private static boolean testGuess(int n, int answer) {
+        if (n == answer) {
+            return true;
+        } else if (n > 1000 || n < 1) {
+            System.out.println("out of range");
+            return false;
+        } else if (n > answer) {
             System.out.println("too high");
+            return true;
         } else if (n < answer) {
             System.out.println("too low");
+            return true;
         }
-        return n;
+        return false;
     }
 
     private static int getRandom() {
