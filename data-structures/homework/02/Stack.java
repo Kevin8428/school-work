@@ -41,11 +41,11 @@ public class Stack {
         return top == null;
     }
 
-    public boolean isSameRow(){
+    public boolean isConflict(){
         Boolean isSame = false;
         Move tmp = top;
         while(tmp != null) {
-            if (top.rc.column == potentialMove.rc.column || top.rc.row == potentialMove.rc.row) {
+            if (tmp.rc.column == potentialMove.rc.column || tmp.rc.row == potentialMove.rc.row) {
                 return true;
             }
             tmp = tmp.GetNext();

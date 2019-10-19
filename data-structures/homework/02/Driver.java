@@ -22,13 +22,15 @@ public class Driver {
                 success = true;
             }
             stack.incrementMove();
-            Boolean isConflict = stack.isSameRow();
-            if (isConflict) {
+            Boolean conflict = stack.isConflict();
+            if (conflict) {
                 System.out.println("isconflict");
             } else {
                 System.out.println("no conflict - adding");
-                System.out.println("row: " + stack.potentialMove.rc.row);
-                System.out.println("col: " + stack.potentialMove.rc.column);
+                System.out.println("potential row: " + stack.potentialMove.rc.row);
+                System.out.println("potential col: " + stack.potentialMove.rc.column);
+                System.out.println("row: " + stack.top.rc.row);
+                System.out.println("col: " + stack.top.rc.column);
                 stack.push(stack.potentialMove.rc);
             }
         }
