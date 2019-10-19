@@ -28,6 +28,10 @@ public class Stack {
         potentialMove = move;
     }
 
+    public Boolean topIsInColumnEight(){
+        return top.rc.column == 8;
+    }
+
     public void pop(){
         top = top.GetNext();
         count--;
@@ -44,16 +48,20 @@ public class Stack {
     public boolean isConflict(){
         Boolean isSame = false;
         Move tmp = top;
+        System.out.println("=====move being analyzed: " + potentialMove.rc.row + "," +potentialMove.rc.column);
         while(tmp != null) {
             if (tmp.rc.column == potentialMove.rc.column || tmp.rc.row == potentialMove.rc.row) {
                 return true;
             }
-            if (isDiagnalConflict(tmp, potentialMove)) {
+            Boolean isDiagnal = isDiagnalConflict(tmp, potentialMove);
+            // System.out.println("is diagnal conflict: "+ isDiagnal);
+            if (isDiagnal) {
                 return true;
             }
             // test if (+/- 7) || (+/- 9)
             tmp = tmp.GetNext();
         }
+
         return isSame;
     }
     // only need to test less than values, which works well for walking down the stack
@@ -62,6 +70,9 @@ public class Stack {
     // check 2: row, col == nextMove.rc.row - n, nextMove.rc.column + n)
     // if col value < 1 || col value > 8, ignore the check
     public Boolean isDiagnalConflict(Move tmp, Move nextMove) {
+        System.out.println("tmp: " + tmp.rc.row + "," +tmp.rc.column);
+        System.out.println("nextMove: " + nextMove.rc.row + "," +nextMove.rc.column);
+
         Integer rowsToCheck = nextMove.rc.row -1;
         if (rowsToCheck < 1) {
             return false;

@@ -16,7 +16,7 @@ public class Driver {
         Integer tries = 0;
         while (!success && !stack.isEmpty()) {
             tries++;
-            if (tries > 120) {
+            if (tries > 80) {
                 System.out.println("aborting");
                 stack.print();
                 success = true;
@@ -26,11 +26,11 @@ public class Driver {
             if (conflict) {
                 System.out.println("isconflict");
             } else {
-                System.out.println("no conflict - adding");
-                System.out.println("potential row: " + stack.potentialMove.rc.row);
-                System.out.println("potential col: " + stack.potentialMove.rc.column);
-                System.out.println("row: " + stack.top.rc.row);
-                System.out.println("col: " + stack.top.rc.column);
+                // System.out.println("no conflict - adding");
+                // System.out.println("potential row: " + stack.potentialMove.rc.row);
+                // System.out.println("potential col: " + stack.potentialMove.rc.column);
+                // System.out.println("row: " + stack.top.rc.row);
+                // System.out.println("col: " + stack.top.rc.column);
                 stack.push(stack.potentialMove.rc);
             }
         }
