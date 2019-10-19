@@ -1,5 +1,6 @@
 public class Stack {
     public Move top;
+    public Move potentialMove;
     public int count;
 
     public void push(RowColumn rc) {
@@ -8,6 +9,23 @@ public class Stack {
         m.SetNext(top);
         top = m;
         count++;
+    }
+
+    public void incrementMove(){
+        Move move = new Move();
+        RowColumn rc = new RowColumn();
+        move.rc = rc;
+        if (potentialMove == null) {
+            potentialMove = top;
+        }
+        if (potentialMove.rc.column == 8) {
+            move.rc.column = 1;
+            move.rc.row = potentialMove.rc.row + 1;
+        } else {
+            move.rc.column = potentialMove.rc.column + 1;
+            move.rc.row = potentialMove.rc.row;
+        }
+        potentialMove = move;
     }
 
     public void pop(){
@@ -27,11 +45,7 @@ public class Stack {
         Boolean isSame = false;
         Move tmp = top;
         while(tmp != null) {
-            Move next = tmp.GetNext();
-            if (next == null) {
-                return isSame;
-            }
-            if (top.rc.column == next.rc.column || top.rc.row == next.rc.row) {
+            if (top.rc.column == potentialMove.rc.column || top.rc.row == potentialMove.rc.row) {
                 return true;
             }
             tmp = tmp.GetNext();
@@ -50,8 +64,9 @@ public class Stack {
                 System.out.println("empty");
                 return;
             }
-            System.out.println("move row: "+ move.rc.row);
-            System.out.println("move column: "+ move.rc.column);
+            System.out.println("==================================");
+            System.out.println("r: "+ move.rc.row);
+            System.out.println("c: "+ move.rc.column);
             move = move.GetNext();
         }
     }
