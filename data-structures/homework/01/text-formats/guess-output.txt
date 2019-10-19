@@ -1,0 +1,63 @@
+///////////////////////////////////////////////////////
+/////////////////// run 1 output //////////////////////
+///////////////////////////////////////////////////////
+javac Guess.java && java Guess
+random gen num: 628
+1
+too low
+2
+too low
+-1
+out of range
+1001
+out of range
+f
+input was of bad format
+z
+input was of bad format
+fdafads
+input was of bad format
+1.1
+input was of bad format
+
+f
+input was of bad format
+input was of bad format
+1
+too low
+628
+Total guesses: 4
+
+///////////////////////////////////////////////////////
+/////////////////// run 2 output //////////////////////
+///////////////////////////////////////////////////////
+javac Guess.java && java Guess
+random gen num: 464
+1
+too low
+2
+too low
+3
+too low
+4
+too low
+5
+too low
+6
+too low
+-1
+out of range
+-4
+out of range
+abc
+input was of bad format
+foobar
+input was of bad format
+""
+input was of bad format
+1000000
+out of range
+1.321321
+input was of bad format
+464
+Total guesses: 7
