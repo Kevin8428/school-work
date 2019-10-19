@@ -48,13 +48,40 @@ public class Stack {
             if (tmp.rc.column == potentialMove.rc.column || tmp.rc.row == potentialMove.rc.row) {
                 return true;
             }
+            if (isDiagnalConflict(tmp, potentialMove)) {
+                return true;
+            }
+            // test if (+/- 7) || (+/- 9)
             tmp = tmp.GetNext();
         }
         return isSame;
     }
-
-    public boolean isSameColumn(){
-        return top == null;
+    // only need to test less than values, which works well for walking down the stack
+    // for every n row you decrement, perform two checks
+    // check 1: row, col == nextMove.rc.row - n, nextMove.rc.column - n
+    // check 2: row, col == nextMove.rc.row - n, nextMove.rc.column + n)
+    // if col value < 1 || col value > 8, ignore the check
+    public Boolean isDiagnalConflict(Move tmp, Move nextMove) {
+        Integer rowsToCheck = nextMove.rc.row -1;
+        if (rowsToCheck < 1) {
+            return false;
+        }
+        for (int i = rowsToCheck; i > 0; i--) {
+            Integer row = nextMove.rc.row - i;
+            Integer lowerColumn = nextMove.rc.column - i;
+            Integer upperColumn = nextMove.rc.column + i;
+            if (lowerColumn > 0) {
+                if (tmp.rc.row == row && tmp.rc.column == lowerColumn) {
+                    return true;
+                }
+            }
+            if (upperColumn < 9) {
+                if (tmp.rc.row == row && tmp.rc.column == upperColumn) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public void print(){

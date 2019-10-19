@@ -16,7 +16,7 @@ public class Driver {
         Integer tries = 0;
         while (!success && !stack.isEmpty()) {
             tries++;
-            if (tries > 50) {
+            if (tries > 120) {
                 System.out.println("aborting");
                 stack.print();
                 success = true;
