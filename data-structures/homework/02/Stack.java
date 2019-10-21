@@ -119,6 +119,9 @@ public class Stack {
                 System.out.println("empty");
                 return;
             }
+            if (move == null) {
+                return;
+            }
             System.out.println("move: "+ move.rc.row+","+ move.rc.column);
             move = move.GetNext();
         }

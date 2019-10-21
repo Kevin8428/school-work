@@ -20,7 +20,7 @@ public class Driver {
         Integer tries = 0;
         while (!success) {
             tries++;
-            if (tries > 80) {
+            if (tries > 2000) {
                 System.out.println("aborting");
                 stack.print();
                 success = true;
@@ -30,14 +30,20 @@ public class Driver {
             if (conflict) {
                 System.out.println("isconflict for "+stack.potentialMove.rc.row+","+stack.potentialMove.rc.column);
                 if (stack.potentialMove.rc.column == 8) {
-                    stack.top.rc.column++;
-                    stack.potentialMove = top;
-                    top = top.next;
-                    System.out.println("end of column, resetting top");
-                    // while (stack.top.rc.column == 8) {
-                    //     stack.pop();
-                    // }
-                    System.out.println("top reset "+stack.top.rc.row+","+stack.top.rc.column);
+                    System.out.println("end of column, resetting top from "+stack.top.rc.row+","+stack.top.rc.column);
+                    while (stack.potentialMove.rc.column == 8) {
+                        // no viable move in next row
+                        // set potential next move to head
+                        stack.potentialMove = stack.top;
+                        // stack.potentialMove.rc.column++;
+                        // reset head to previous good move
+                        // stack.top = stack.top.next;
+                        stack.pop();
+                    }
+                    stack.potentialMove.rc.column++;
+                    
+                    System.out.println("new top: "+stack.top.rc.row+","+stack.top.rc.column);
+                    System.out.println("potential new move "+stack.potentialMove.rc.row+","+stack.potentialMove.rc.column);
                     // if top is not at end of column, move over one
                     // if top is end of column, pop and move new top over one
                     // end of column, move top over one and try again
