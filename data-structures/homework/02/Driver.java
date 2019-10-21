@@ -30,11 +30,13 @@ public class Driver {
             if (conflict) {
                 System.out.println("isconflict for "+stack.potentialMove.rc.row+","+stack.potentialMove.rc.column);
                 if (stack.potentialMove.rc.column == 8) {
-                    System.out.println("end of column, resetting top");
-                    while (stack.top.rc.column == 8) {
-                        stack.pop();
-                    }
                     stack.top.rc.column++;
+                    stack.potentialMove = top;
+                    top = top.next;
+                    System.out.println("end of column, resetting top");
+                    // while (stack.top.rc.column == 8) {
+                    //     stack.pop();
+                    // }
                     System.out.println("top reset "+stack.top.rc.row+","+stack.top.rc.column);
                     // if top is not at end of column, move over one
                     // if top is end of column, pop and move new top over one
