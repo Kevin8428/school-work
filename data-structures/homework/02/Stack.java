@@ -1,5 +1,7 @@
 public class Stack {
     public Move top;
+    public Move start;
+    public Boolean newRow;
     public Move potentialMove;
     public int count;
 
@@ -10,11 +12,23 @@ public class Stack {
         top = m;
         count++;
     }
-
+    public void incrementMoveNextRow(){
+            potentialMove.rc.column = 1;
+            potentialMove.rc.row = top.rc.row+1;
+            newRow = true;
+    }
     public void incrementMove(){
         Move move = new Move();
         RowColumn rc = new RowColumn();
+        if (newRow) {
+            newRow = false;
+            return;
+        }
         move.rc = rc;
+        if (potentialMove == null && top == null) {
+            potentialMove = start;
+            return;
+        }
         if (potentialMove == null) {
             potentialMove = top;
         }
@@ -48,8 +62,10 @@ public class Stack {
     public boolean isConflict(){
         Boolean isSame = false;
         Move tmp = top;
-        System.out.println("=====move being analyzed: " + potentialMove.rc.row + "," +potentialMove.rc.column);
         while(tmp != null) {
+            System.out.println("=====move being analyzed: " + potentialMove.rc.row + "," +potentialMove.rc.column +" against "+tmp.rc.row + "," +tmp.rc.column);
+            // System.out.println("=====top: " + top.rc.row + "," +top.rc.column);
+            // System.out.println("=====tmp: " + tmp.rc.row + "," +tmp.rc.column);
             if (tmp.rc.column == potentialMove.rc.column || tmp.rc.row == potentialMove.rc.row) {
                 return true;
             }
@@ -70,8 +86,8 @@ public class Stack {
     // check 2: row, col == nextMove.rc.row - n, nextMove.rc.column + n)
     // if col value < 1 || col value > 8, ignore the check
     public Boolean isDiagnalConflict(Move tmp, Move nextMove) {
-        System.out.println("tmp: " + tmp.rc.row + "," +tmp.rc.column);
-        System.out.println("nextMove: " + nextMove.rc.row + "," +nextMove.rc.column);
+        // System.out.println("tmp: " + tmp.rc.row + "," +tmp.rc.column);
+        // System.out.println("nextMove: " + nextMove.rc.row + "," +nextMove.rc.column);
 
         Integer rowsToCheck = nextMove.rc.row -1;
         if (rowsToCheck < 1) {
@@ -97,14 +113,13 @@ public class Stack {
 
     public void print(){
 		Move move = top;
+        System.out.println("==================================");
         for (int i = 0; i < count; i++) {
             if (isEmpty()) {
                 System.out.println("empty");
                 return;
             }
-            System.out.println("==================================");
-            System.out.println("r: "+ move.rc.row);
-            System.out.println("c: "+ move.rc.column);
+            System.out.println("move: "+ move.rc.row+","+ move.rc.column);
             move = move.GetNext();
         }
     }
