@@ -40,7 +40,10 @@ public class Driver {
                         // stack.top = stack.top.next;
                         stack.pop();
                     }
-                    stack.potentialMove.rc.column++;
+                    // stack.potentialMove.rc.column++;
+                    // if (stack.potentialMove.rc.column == 8) {
+                    //     stack.potentialMove.rc.column = 1;
+                    // }
                     
                     System.out.println("new top: "+stack.top.rc.row+","+stack.top.rc.column);
                     System.out.println("potential new move "+stack.potentialMove.rc.row+","+stack.potentialMove.rc.column);
