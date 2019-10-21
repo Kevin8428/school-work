@@ -63,7 +63,7 @@ public class Stack {
         Boolean isSame = false;
         Move tmp = top;
         while(tmp != null) {
-            System.out.println("=====move being analyzed: " + potentialMove.rc.row + "," +potentialMove.rc.column +" against "+tmp.rc.row + "," +tmp.rc.column);
+            // System.out.println("=====move being analyzed: " + potentialMove.rc.row + "," +potentialMove.rc.column +" against "+tmp.rc.row + "," +tmp.rc.column);
             // System.out.println("=====top: " + top.rc.row + "," +top.rc.column);
             // System.out.println("=====tmp: " + tmp.rc.row + "," +tmp.rc.column);
             if (tmp.rc.column == potentialMove.rc.column || tmp.rc.row == potentialMove.rc.row) {
