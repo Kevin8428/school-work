@@ -12,11 +12,14 @@ public class Stack {
         top = m;
         count++;
     }
+    // set r,c => top.row+1,1
     public void incrementMoveNextRow(){
             potentialMove.rc.column = 1;
             potentialMove.rc.row = top.rc.row+1;
             newRow = true;
     }
+    // look for next valid move on the row. If on newRow, return so first item 
+    // on new row is analyzed
     public void incrementMove(){
         Move move = new Move();
         RowColumn rc = new RowColumn();
@@ -32,18 +35,9 @@ public class Stack {
         if (potentialMove == null) {
             potentialMove = top;
         }
-        if (potentialMove.rc.column == 8) {
-            move.rc.column = 1;
-            move.rc.row = potentialMove.rc.row + 1;
-        } else {
-            move.rc.column = potentialMove.rc.column + 1;
-            move.rc.row = potentialMove.rc.row;
-        }
+        move.rc.column = potentialMove.rc.column + 1;
+        move.rc.row = potentialMove.rc.row;
         potentialMove = move;
-    }
-
-    public Boolean topIsInColumnEight(){
-        return top.rc.column == 8;
     }
 
     public void pop(){
@@ -59,22 +53,18 @@ public class Stack {
         return top == null;
     }
 
+    // walk stack to see if potential move has same row/column/diagnal
     public boolean isConflict(){
         Boolean isSame = false;
         Move tmp = top;
         while(tmp != null) {
-            // System.out.println("=====move being analyzed: " + potentialMove.rc.row + "," +potentialMove.rc.column +" against "+tmp.rc.row + "," +tmp.rc.column);
-            // System.out.println("=====top: " + top.rc.row + "," +top.rc.column);
-            // System.out.println("=====tmp: " + tmp.rc.row + "," +tmp.rc.column);
             if (tmp.rc.column == potentialMove.rc.column || tmp.rc.row == potentialMove.rc.row) {
                 return true;
             }
             Boolean isDiagnal = isDiagnalConflict(tmp, potentialMove);
-            // System.out.println("is diagnal conflict: "+ isDiagnal);
             if (isDiagnal) {
                 return true;
             }
-            // test if (+/- 7) || (+/- 9)
             tmp = tmp.GetNext();
         }
 
@@ -86,8 +76,6 @@ public class Stack {
     // check 2: row, col == nextMove.rc.row - n, nextMove.rc.column + n)
     // if col value < 1 || col value > 8, ignore the check
     public Boolean isDiagnalConflict(Move tmp, Move nextMove) {
-        // System.out.println("tmp: " + tmp.rc.row + "," +tmp.rc.column);
-        // System.out.println("nextMove: " + nextMove.rc.row + "," +nextMove.rc.column);
 
         Integer rowsToCheck = nextMove.rc.row -1;
         if (rowsToCheck < 1) {
@@ -113,7 +101,7 @@ public class Stack {
 
     public void print(){
 		Move move = top;
-        System.out.println("==================================");
+        String[][] board = new String[8][8];
         for (int i = 0; i < count; i++) {
             if (isEmpty()) {
                 System.out.println("empty");
@@ -122,8 +110,20 @@ public class Stack {
             if (move == null) {
                 return;
             }
-            System.out.println("move: "+ move.rc.row+","+ move.rc.column);
+            board[move.rc.row-1][move.rc.column-1] = "x";
             move = move.GetNext();
         }
+        for (int row = 0; row < 8; row++) {
+            System.out.println("----------------------------------------");
+            for (int col = 0; col < 8; col++) {
+                if (board[row][col] == "x") {
+                    System.out.print("| x |");
+                } else {
+                    System.out.print("|   |");
+                }
+            }
+            System.out.println();
+        }
+        System.out.println("----------------------------------------");
     }
 }
