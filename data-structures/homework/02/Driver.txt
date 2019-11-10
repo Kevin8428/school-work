@@ -27,7 +27,8 @@ public class Driver {
     public void run(Stack stack){
         while (!success) {
             stack.incrementMove();
-            if (stack.isConflict()) {
+            Boolean conflict = stack.isConflict();
+            if (conflict) {
                 if (stack.potentialMove.rc.column == 8) {
                     while (stack.potentialMove.rc.column == 8) {
                         stack.potentialMove = stack.top;

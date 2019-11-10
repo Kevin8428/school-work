@@ -55,6 +55,7 @@ public class Stack {
 
     // walk stack to see if potential move has same row/column/diagnal
     public boolean isConflict(){
+        Boolean isSame = false;
         Move tmp = top;
         while(tmp != null) {
             if (tmp.rc.column == potentialMove.rc.column || tmp.rc.row == potentialMove.rc.row) {
@@ -66,7 +67,8 @@ public class Stack {
             }
             tmp = tmp.GetNext();
         }
-        return false;
+
+        return isSame;
     }
     // only need to test less than values, which works well for walking down the stack
     // for every n row you decrement, perform two checks
@@ -96,7 +98,7 @@ public class Stack {
         }
         return false;
     }
-
+    // print result of board
     public void print(){
 		Move move = top;
         String[][] board = new String[8][8];
