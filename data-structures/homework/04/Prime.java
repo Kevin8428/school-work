@@ -1,8 +1,8 @@
 import java.lang.Math;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Prime {
-    private int head;
     private int primeTail;
     private int queueCount;
     private int primeCount;
@@ -13,12 +13,24 @@ public class Prime {
         Prime prime = new Prime();
         prime.Init();
     }
+    /*
+    load queue to from 2 to n. Move head to prime and array.
+    Remove multiples of head from queue.
+    */
     public void Init(){
-        int size = 10;
+        System.out.println("please input number: ");
+        Scanner sc = new Scanner(System.in);
+        if (!sc.hasNextInt()) {
+            System.out.println("input was of bad format");
+            sc.close();
+            return;
+        }
+        int size = sc.nextInt();
+        sc.close();
         size = size - 1;
         queue = new Integer[size];
-        prime = new Integer[size];
-        head = primeTail = queueCount = primeCount = 0;
+        prime = new Integer[10];
+        primeTail = queueCount = primeCount = 0;
         // build queue
         for (int i = 2, j = 0; i < size + 2; i++, j++) {
             queue[j] = i;
@@ -30,18 +42,44 @@ public class Prime {
             add();
             removeMultiples();
         }while( p < Math.sqrt(size) );
-        System.out.println("done: "+Arrays.toString(prime));
-        System.out.println("queue: "+Arrays.toString(queue));
+
+        while (queue[0] != null) {
+            add();
+            remove(queue[0]);
+        }
+        for (int i = 0; i < prime.length; i++) {
+            if (prime[i] == null){
+                break;
+            }
+            if (i > 0 && i % 10 == 0) {
+                System.out.println();
+            }
+            System.out.print(prime[i]+", ");
+        }
     }
 
+    // remove all multiples for the head of the queue
     public void removeMultiples() {
-        System.out.println("removing multiples of "+queue[0]);
         int base = queue[0];
         for (int i = 0; i < queueCount; i++) {
             if (queue[i] != null && queue[i] % base == 0) {
                 remove(queue[i]);
             }
         }
+    }
+
+    // remove single record. Need temp queue because not
+    // removing from tail, but from middle of queue
+    public void remove(int nRemove) {
+        Integer[] tempArr = new Integer[queueCount];
+        for (int i = 0, j = 0; i < queue.length; i++) {
+            if (queue[i] == null || nRemove == queue[i]) {
+                continue;
+            }
+            tempArr[j] = queue[i];
+            j++;
+        }
+        queue = tempArr;
     }
 
     public boolean add() {
@@ -55,30 +93,14 @@ public class Prime {
     }
 
     public void resize() {
-        Integer[] tempArr = new Integer[queueCount+10];
-        for (int i = 0; i < queue.length; i++) {
-            tempArr[i] = queue[i];
+        Integer[] tempArr = new Integer[prime.length+10];
+        for (int i = 0; i < prime.length; i++) {
+            tempArr[i] = prime[i];
         }
-        queue = tempArr;
-    }
-
-    public void remove(int nRemove) {
-        Integer[] tempArr = new Integer[queueCount];
-        for (int i = 0, j = 0; i < queue.length; i++) {
-            if (queue[i] == null || nRemove == queue[i]) {
-                continue;
-            }
-            tempArr[j] = queue[i];
-            j++;
-        }
-        queue = tempArr;
+        prime = tempArr;
     }
 
     public boolean isFull() {
-        return(primeCount == queue.length);
-    }
-
-    public boolean isEmpty() {
-        return(queueCount == 0);
+        return(primeCount == prime.length);
     }
 }
