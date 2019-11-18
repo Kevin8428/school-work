@@ -1,7 +1,7 @@
 public class Driver {
     public static void main(String[] args) {
         Driver driver = new Driver();
-        driver.run(893736, 0);
+        driver.run(1234, 0);
     }
     // print every time stepping into recursion.
     public void run(int n, int place) {
