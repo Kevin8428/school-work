@@ -1,0 +1,51 @@
+// get value at postition 5
+preloading data into table for buckets 3,4,5,6 and two collisions
+please input action(get, put, contains, delete or print): 
+get
+please input a number: 
+5
+5
+
+// print table
+preloading data into table for buckets 3,4,5,6 and two collisions
+please input action(get, put, contains, delete or print): 
+print
+table position: 0 has value null
+table position: 1 has value null
+table position: 2 has value null
+table position: 3 has value 3
+table position: 4 is previously used
+table position: 5 has value 5
+table position: 6 has value 6
+table position: 7 has value 36
+table position: 8 has value 67
+table position: 9 has value null
+table position: 10 has value null
+table position: 11 has value null
+table position: 12 has value null
+table position: 13 has value null
+table position: 14 has value null
+table position: 15 has value null
+table position: 16 has value null
+table position: 17 has value null
+table position: 18 has value null
+table position: 19 has value null
+table position: 20 has value null
+table position: 21 has value null
+table position: 22 has value null
+table position: 23 has value null
+table position: 24 has value null
+table position: 25 has value null
+table position: 26 has value null
+table position: 27 has value null
+table position: 28 has value null
+table position: 29 has value null
+table position: 30 has value null
+
+// contains a value at position 3
+preloading data into table for buckets 3,4,5,6 and two collisions
+please input action(get, put, contains, delete or print): 
+contains
+please input a number: 
+3
+true
