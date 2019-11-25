@@ -1,5 +1,5 @@
 public class Node {
-    private int data;
+    public int data;
     private String str;
     private boolean isPrevUsed;
 
