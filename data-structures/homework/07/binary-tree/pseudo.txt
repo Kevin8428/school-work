@@ -1,0 +1,19 @@
+// add
+// 'add' method needs to traverse left child then right
+// if child is null, create node and set with word
+// should also set count of the word inside node
+// can increment node count when checking to see if word already exists
+
+// find/get count
+// traverse left then right. If word matches that of input, exit recursion.
+// because we're storing a 'count' inside the node object, just return the full
+// node and print the count through a getter method on the node class.
+
+// unique
+// traverse left then right. Have private int for unique words, along with total
+// words. Update unique whenever adding to the tree.
+
+// most asks from the project are going to be following similar 
+// patterns for traversing left/right of binary tree.
+// hopefully we can do this traversal without duplicating the logic
+// multiple times

@@ -34,7 +34,7 @@ public class Driver {
                 table.put(n, "");
                 break;
             case "contains":
-                table.contains(n);
+                System.out.println(table.contains(n));
                 break;
             case "delete":
                 table.delete(n);

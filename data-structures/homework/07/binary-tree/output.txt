@@ -1,0 +1,14 @@
+text contains: 163721 total words.
+transylvania occurs 16 times.
+harker occurs 113 times.
+renfield occurs 39 times.
+vampire occurs 24 times.
+expostulate occurs 1 times.
+number of unique words: 10854
+word at root is: 'the'
+tree is: 34 nodes deep
+total word count: 163721
+most frequent word is 'the'; used 8037 times.
+First 20 words pre order words: the project gutenberg ebook dracula by bram anyone and almost 16 1 14 111 10 11 1018 1030 124 12 
+First 20 words post order words: 1030 1018 11 10 12 124 111 14 1 16 almost and anyone bram by dracula ebook gutenberg project the 
+First 20 words in order words: 1 10 1018 1030 11 111 12 124 14 16 almost and anyone bram by dracula ebook gutenberg project the 
