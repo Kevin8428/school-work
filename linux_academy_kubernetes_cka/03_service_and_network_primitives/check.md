@@ -1,0 +1,2 @@
+# questions
+- deployment vs service?
