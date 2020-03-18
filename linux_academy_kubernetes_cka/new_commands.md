@@ -3,6 +3,15 @@
 - `kubectl exec -it...` - faster way to access terminal?
     - `kubectl exec -it pod -n web --sh` - open shell
     - incorporate to devops-tools?
+- `kubectl describe csr <csr_name>`
+    - view details of certificate signing request
+- `kubectl get csr <csr_name> -o yaml`
+    - view certificate
+- `kubectl get csr <csr_name> -o jsonpath='{.status.certificate}' | base64 --decode`
+    - extract/decode cert using json path
+- `readonlyrootfilesystem`
+    - can set this to make sure only write to datastore, not local filesystem
+        - local FS is ephemeral and will be removed
 
 # TODO
 1. create list of all k8s components/objects. Write extensive features/functions and have notes on each. Be able to build/edit/describe each in full.
@@ -37,6 +46,9 @@
 # COMMANDS
 
 - `kubectl config view` - check credentials
+
+- `kubectl exec -it group-context -c <container_name> sh`
+    - connect to one container by name and open shell
 
 - `kubectl get pv`
     - short for `kubectl get persistentvolumes`
