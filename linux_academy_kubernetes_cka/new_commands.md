@@ -17,6 +17,9 @@
 1. create list of all k8s components/objects. Write extensive features/functions and have notes on each. Be able to build/edit/describe each in full.
 2. pvc vs pv vs storageClass
     - what is a volume mount?
+3. process vs container?
+4. kubelet and `swap`??
+5. what is flannel? what is it used for? learn about flannel
 
 # daemonset
 - ensures that all (or some) Nodes run a copy of a Pod. 
@@ -43,7 +46,21 @@
 `kubelet` - the component that runs on all of the machines in your cluster and does things like starting pods and containers.
 `kubectl` - the command line util to talk to your cluster.
 
-# COMMANDS
+# common commands
+`kubectl edit deploy nginx -n web` - edit any resource!
+`kubectl get all --all-namespaces` or `kubectl get all -o wide --all-namespaces`
+`kubectl get pods --all-namespaces`
+`kubectl get rs -n web` - get replicaset for namespace
+`kubectl run busybox --image=busybox --rm -it --restart=Never -- sh` - start a busybox pod to be able to ping other pod directly
+`wget -qO- <pod_ip_address>:<pod_port>` - access the pod directly via its container port
+
+# ALL COMMANDS
+
+- `kubectl get all --all-namespaces`
+
+- `systemctl status docker` - is docker service active/running?
+    - `systemctl enable docker` - if not running
+    - `systemctl start docker` - start
 
 - `kubectl config view` - check credentials
 
@@ -52,6 +69,12 @@
 
 - `kubectl get pv`
     - short for `kubectl get persistentvolumes`
+
+- `kubectl get ep`
+    - shorthand for `kubectl get endpoints`
+
+- `kubectl get --raw /apis/metrics.k8s.io/`
+    - raw???
 
 - `kubectl exec configmap-volume-pod -- ls /etc/config`
     - view configs (eg environment variables for a pod)
