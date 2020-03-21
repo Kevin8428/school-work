@@ -1,5 +1,38 @@
+# commands not memorized
+- `kubectl get po -L app` - Get the label 'app' for the pods
+- `kubectl get pods -l app=v2` - get pods by label
+- `kubectl get pods --show-labels` - show labels
+- `kubectl label pods nginx1 app-` - remove label
+- `kubectl label pods nginx2 app=v2 --overwrite` - Change the label
+- `kubectl describe pods nginx1 | grep -i 'annotations'` - get annotation
+- `kubectl annotate pods nginx1 description='my description'` - set annotation
+- `kubectl annotate pods nginx1 description-` - remove annotation
+
+- `kubectl <pod_element> pods <pod_name> <metadata_field>-`
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    description: update
+  creationTimestamp: "2020-03-20T12:06:09Z"
+  labels:
+    app: v1
+  name: nginx1
+  namespace: default
+  resourceVersion: "6006"
+  selfLink: /api/v1/namespaces/default/pods/nginx1
+  uid: 2f8ed5f5-6aa3-11ea-a3ae-0285534f36cb
+```
+
+
 # for work
-- canary deployments?
+- `kubectl rollout pause deployment <name>`
+    - canary deployments?
+    - create single pod, but not all of them
+    - all old pods still run
+    - good for canary release
 - `kubectl exec -it...` - faster way to access terminal?
     - `kubectl exec -it pod -n web --sh` - open shell
     - incorporate to devops-tools?
@@ -12,6 +45,7 @@
 - `readonlyrootfilesystem`
     - can set this to make sure only write to datastore, not local filesystem
         - local FS is ephemeral and will be removed
+- can use List instead of `--` to separate multiple objects written to single file
 
 # TODO
 1. create list of all k8s components/objects. Write extensive features/functions and have notes on each. Be able to build/edit/describe each in full.
@@ -20,6 +54,7 @@
 3. process vs container?
 4. kubelet and `swap`??
 5. what is flannel? what is it used for? learn about flannel
+6. coredns - learn more about
 
 # daemonset
 - ensures that all (or some) Nodes run a copy of a Pod. 
@@ -29,6 +64,7 @@
 
 # nodeport
 - Exposes the Service on each Node’s IP at a static port (the NodePort)
+- reserve a port on all nodes in a cluster
 
 # ClusterIP 
 - Exposes the Service on a cluster-internal IP. Choosing this value makes the Service only reachable from within the cluster. This is the default ServiceType.
@@ -54,7 +90,11 @@
 `kubectl run busybox --image=busybox --rm -it --restart=Never -- sh` - start a busybox pod to be able to ping other pod directly
 `wget -qO- <pod_ip_address>:<pod_port>` - access the pod directly via its container port
 
+`kubectl label po nginx2 app=v2 --overwrite` - overwrite any existing configuration
+
 # ALL COMMANDS
+
+- `kubectl explain pod.spec`
 
 - `kubectl get all --all-namespaces`
 
@@ -139,3 +179,57 @@
 - `nsenter -t <pid> -n ip addr` - run a command in the process' network namespace
 
 - `kubectl exec busybox -- nslookup <name>` - 
+
+
+
+# resource types
+Resource Name
+bindings           
+componentstatuses
+configmaps
+endpoints
+limitranges
+namespaces
+nodes
+persistentvolumeclaims
+persistentvolumes
+pods
+podtemplates
+replicationcontrollers
+resourcequotas
+secrets
+serviceaccounts
+services
+mutatingwebhookconfigurations
+validatingwebhookconfigurations
+customresourcedefinitions
+apiservices
+controllerrevisions
+daemonsets
+deployments
+replicasets
+statefulsets
+tokenreviews
+localsubjectaccessreviews
+selfsubjectaccessreviews
+selfsubjectrulesreviews
+subjectaccessreviews
+horizontalpodautoscalers
+cronjobs
+jobs
+certificatesigningrequests
+leases
+events
+ingresses
+networkpolicies
+poddisruptionbudgets
+podsecuritypolicies
+clusterrolebindings
+clusterroles
+rolebindings
+roles
+priorityclasses
+csidrivers
+csinodes
+storageclasses
+volumeattachments

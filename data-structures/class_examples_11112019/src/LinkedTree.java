@@ -1,4 +1,4 @@
-
+// recursion
 public class LinkedTree {
 	
 	private Node root;
