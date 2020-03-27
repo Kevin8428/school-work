@@ -31,13 +31,16 @@ OR
 # set pod image:
 `kubectl set image pod/nginx nginx=nginx:1.7.1`
 
+# set deployment image:
+`kubectl set image deploy nginx nginx=nginx:1.7.9`
+
 # get pods yaml:
 `kubectl get po nginx -o yaml`
 
 # get logs about previous instance:
 `kubectl logs nginx -p`
 
-# creaate pod and set env var
+# create pod and set env var
 `kubectl run nginx --image=nginx --restart=Never --env=var1=val1`
 
 # Get the YAML for a new ResourceQuota called 'myrq' with hard limits of 1 CPU, 1G memory and 2 pods without creating it
