@@ -55,6 +55,12 @@ kubectl top - ????
 - `kubectl run nginx --image=nginx --serviceaccount=myuser` - specify service account for pod
 
 
+
+- `ip addr add 192.168.50.5 dev eth0` - Assign a IP Address to Specific Interface
+- `ip route add <destination_io>/24 via <router_ip_for_network> dev eth0` - add route to ip route table
+- `ip route add 0.0.0.0 via <router_ip_for_network>` - if server doesn't have a ip IP address registered in ip routes table, send to outside world.
+
+
 # pod, deployment, service
 - `--expose` creates a service, `--restart=Never` prevents a deployment - just builds pod
     - pod only: `--restart=Never`
