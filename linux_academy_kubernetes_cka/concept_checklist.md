@@ -2,7 +2,6 @@
 1. be able to explain each
 2. be able to build each
 
-
 - selectors filter labels
     - you select a label
 - annotations
@@ -17,15 +16,28 @@
 `kubectl get rolebinding -n ingress-space`
 `kubectl get clusterrolebinding -n ingress-space`
 
-0. learn about metrics-server
-0. learn about network-overlay
-0. TLS bootstrap
-0. learn about service networking - kubelet, kube-proxy and ip tables
+`watch “kubectl top node && kubectl top pod”`???????
+`kubectl top pod <pod_name> --containers`
 
-0. learn about controllers like nginx contollers and deploying them
+
+# SHORTLIST TO LEARN
+1. RBAC
+2. TLS bootstrap
+3. learn about ELB, nginx ingress-controller
+4. learn about network-overlay
+5. CoreDNS - explain, diagram, etc
+6. HPA - how autoscaling works in depth
+7. Prometheus
+8. learn about metrics-server, metrics API
+9. look at udemy - anything not covered?
+10. look at service files like kube-apiserver.service - what is a service file? when are they used, how to edit etc
+
+
+0. learn about service networking - kubelet, kube-proxy and ip tables - DONE
+0. learn about controllers like nginx contollers and deploying them - DONE
     - learn about using a service to expose an ingress
-0. draw diagrams of all major concepts/objects
-1. diagram and explain clusterIp, nodePort, services
+0. draw diagrams of all major concepts/objects - DONE
+1. diagram and explain clusterIp, nodePort, services - DONE
 - explain/diagram what the default kubernets ClusterIP is
 - explain how servics are created in api-server, api-server notifies all kube-proxy agents, and what happens further
 - explain ip tables and how they're updated
@@ -44,7 +56,7 @@
 7. how to find all kubernetes daemonsets
     - `kubectl get all --all-namespaces`
 8. get better w/ `kubectl exec` - when to use and why
-9. pv vs volume
+9. pv vs volume - DONE
     - practice: mount a volume and access it inside the container, not just pod
         - practice loading data, writing data, deleting pod and accessing
     - how does a continer access pod data
