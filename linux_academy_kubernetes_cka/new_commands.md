@@ -1,6 +1,8 @@
 kubectl top - ????
-
 # commands not memorized
+- `kubectl auth can-i update pods --as=john -n development`
+- `docker ps -a` - list all containers
+- `kubectl get ep <service>` - get ips (endpoints) of a service
 - `kubectl exec busybox nslookup kubernetes.default`
 - `kubectl exec busybox nslookup <service_name>` - 
 - `kubectl expose deploy foo --port=<new_port> --target-port=<pods/containers_port>` - expose existing deployment
@@ -31,6 +33,7 @@ kubectl top - ????
 - `kubectl rollout status deploy nginx` - view deployment status
 - `kubectl set image pod/nginx nginx=nginx:1.7.1` - change pod image
 - `kubectl set image deploy nginx nginx=nginx:1.7.9` - change deployment image
+- `kubectl set image deployment/nginx-deploy <image_name>=nginx:1.17`
 - `kubectl rollout history deploy nginx` - get rollout history for `nginx` deployment
 - `kubectl rollout undo deploy nginx` - undo latest rollout
 - `kubectl rollout undo deploy nginx --to-revision=2` - undo to revision 2
@@ -444,7 +447,7 @@ spec:
 - `kubectl taint node <node_name> node-type=prod:NoSchedule`
     - `node-type=prod:NoSchedule` => key-operator-value-effect
         - key: node-type
-        - operator: equuals
+        - operator: equals
         - value: prod
         - effect: NoSchedule
 - `kubectl get pods -o wide -w`

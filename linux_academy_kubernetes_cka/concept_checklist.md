@@ -19,10 +19,34 @@
 `watch “kubectl top node && kubectl top pod”`???????
 `kubectl top pod <pod_name> --containers`
 
+# QUESTIONS BEFORE TAKING EXAM
+- what do I need to know from `systemd` and other linux commands. Why do I need them? in what cases will I use them?
+    - need `systemctl` for restaring systemd unit files
+
 
 # SHORTLIST TO LEARN
+0. debugging:
+    - `kubectl run busybox --image=busybox --restart=Never -it -- sh` - MEMORIZE
+    - learn about NETWORK POLICIES
+    - `netcat` command?
+    - `nc -z -v my-service 80` - open ports, don't send data
+        - from inside busybox container
+    - `kubectl get netpol` - network policy
+0. file system - `/etc/systemd/system/some_service.service`, `/var/lib/kubelet`, `/etc/kubernetes/pki`, `/etc/kubernetes/manifests`, etc
+    - learn common yaml/config file params like `--kubeconfig`, `--config`
 1. RBAC
-2. TLS bootstrap
+2. TLS bootstrap - certificates
+    - create user with a provided csr - create a `CertificateSigningRequest`, run `cat server.csr | base64 | tr -d '\n'` and place cert in `request`
+    - test cert files work, break them, and generate new ones - do several times
+    - draw out CA, nodes, end users and how they all have certs and how CA has ca.key/ca.crt and it's used as the CA Authority
+    - how can you tell in server logs that api-server isn't authenticating to etcd?
+        - can see handshake fail, but not who fails when attempting 
+    - `/etc/kubernetes/manifests/`
+        - default static pod path
+        - `--cert-file` learn about all of these container commands
+    - `/etc/kubernetes/pki/`
+    - learn what both of these paths are used for and why
+    - `kubectl get logs etcd-master` - how does this work, what is etcd-master
 3. learn about ELB, nginx ingress-controller
 4. learn about network-overlay
 5. CoreDNS - explain, diagram, etc
@@ -31,7 +55,16 @@
 8. learn about metrics-server, metrics API
 9. look at udemy - anything not covered?
 10. look at service files like kube-apiserver.service - what is a service file? when are they used, how to edit etc
+11. kubernetes w/ aws - EKS etc
+13. containerd
+14. look at commands checklist eg `nslookup`, `systemctl`, `docker ps -a`
+15. SECRETS - practice setting/getting
 
+
+# Lightning lab questions
+- what is draining a node? why use it and what does it do?
+- `kubectl uncordon` - what does this do?
+- there is kubelet on control plane? I thought just worker
 
 0. learn about service networking - kubelet, kube-proxy and ip tables - DONE
 0. learn about controllers like nginx contollers and deploying them - DONE
@@ -135,5 +168,7 @@
 3. curl pod IP and see response
 4. update pod port from 80 to 8081
 5. curl clusterIP for 8080 and see nginxk
+
+
 
 
