@@ -1,6 +1,7 @@
 kubectl top - ????
 # commands not memorized
 - `kubectl auth can-i update pods --as=john -n development`
+    - search "auth" in kubernetes documentation
 - `docker ps -a` - list all containers
 - `kubectl get ep <service>` - get ips (endpoints) of a service
 - `kubectl exec busybox nslookup kubernetes.default`

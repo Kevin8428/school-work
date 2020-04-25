@@ -22,9 +22,11 @@
 # QUESTIONS BEFORE TAKING EXAM
 - what do I need to know from `systemd` and other linux commands. Why do I need them? in what cases will I use them?
     - need `systemctl` for restaring systemd unit files
-
+- PVC - what if no label selection, matching just happens to first unbound PV that has space? how does pv bind to pod
 
 # SHORTLIST TO LEARN
+0. `kubectl expose deployment/webapp --port=80 --target-port=80 --type=NodePort -n web --dry-run -o yaml > web-service.yaml` 
+    - practice setting nodeport. Need to specify type, port, targetport
 0. debugging:
     - `kubectl run busybox --image=busybox --restart=Never -it -- sh` - MEMORIZE
     - learn about NETWORK POLICIES
