@@ -1,27 +1,25 @@
 questions I couldn't solve:
 
 # lightning labs - passed
-
+- how to ping container
 # mock exam 1 - passed
 `kubectl logs <pod_name> --previous`
 
-# mock exam 2
-FAILED questions 7 and 8 
+# mock exam 2 - passed
 
 # mock exam 3
 
+# practice test - kubeconfig
+
 # practice test - pv & pvc - passed
 
-# practice test - troubleshoot application
-FAILED question 3
+# practice test - troubleshoot application - passed
 
 # practice test - troubleshoot worker node - passed
 
-# practice test - troubleshoot control plane
-FAILED multiple
+# practice test - troubleshoot control plane - passed
 
-# practice test - view certificates
-FAILED - whats wrong with api-server? - only failed questions that shouldn't be on exam
+# practice test - view certificates - passed
 1. `systemctl list-units | grep .service`
 2. `journalctl -u etcd.service -l` - if native - not kubeadm/pod
 3. `kubectl logs etcd` - not native - use kubeadm
